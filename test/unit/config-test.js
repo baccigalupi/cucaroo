@@ -67,4 +67,12 @@ describe('Config', function() {
     config.load();
     assert(config.stepDefinitions.length >= 1);
   });
+
+  it('requires the setup and teardown scripts', function() {
+    config.load();
+    let setup    = require('../features/support/setup');
+    let teardown = require('../features/support/teardown');
+    assert.equal(config.setup, setup);
+    assert.equal(config.teardown, teardown);
+  });
 });
