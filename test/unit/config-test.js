@@ -4,19 +4,21 @@ const assert        = require('assert');
 const OutputStream  = require('./support/output-stream');
 
 const Config        = require('../../lib/config');
+const Logger        = require('../../lib/logger');
 const localConfig   = require('../../.cucaroo.config');
 
 describe('Config', function() {
-  let mockStream, outputConsole, config;
+  let mockStream, outputStream, config;
 
   beforeEach(function() {
     mockStream = new OutputStream();
-    outputConsole = mockStream.stream;
-    config = new Config(outputConsole);
+    outputStream = mockStream.stream;
+    config = new Config(outputStream);
   });
 
-  it('should use the passed in output stream', function() {
-    assert.equal(config.outputStream, outputConsole)
+  it('should create a logger based on the output stream', function() {
+    assert(config.logger instanceof Logger);
+    assert.equal(config.logger.outputStream, outputStream);
   });
 
   it('uses the `.cucaroo.config.js` file to locate important directories', function() {
