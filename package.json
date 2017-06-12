@@ -2,7 +2,7 @@
   "name": "cucaroo",
   "version": "0.2.0",
   "description": "Light cucumber implementation for node javascript",
-  "main": "index.js",
+  "main": "bin/cucaroo",
   "scripts": {
     "test": "mocha test/unit --recursive && bin/cucaroo test/features"
   },
