@@ -4,7 +4,9 @@
   "description": "Light cucumber implementation for node javascript",
   "main": "bin/cucaroo",
   "scripts": {
-    "test": "mocha test/unit --recursive && bin/cucaroo test/features"
+    "test:unit": "mocha test/unit --recursive",
+    "test:acceptance": "bin/cucaroo test/features",
+    "test": "npm run test:unit && npm run test:acceptance"
   },
   "repository": {
     "type": "git",

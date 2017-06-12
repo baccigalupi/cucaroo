@@ -40,7 +40,8 @@ describe('Config', function() {
 
   it('logs a warning if the config file is not found', function() {
     config.load('not-here.yo');
-    assert.equal('.cucaroo.config.js config file not found. Using default values.', mockStream.cleanOutput());
+    let expectedMessage = '`cucaroo.config.js` config file not found.';
+    assert(mockStream.cleanOutput().includes(expectedMessage));
   });
 
   it('does not log anything if the config file is found', function() {
@@ -55,6 +56,13 @@ describe('Config', function() {
     assert.equal(config.timeout, 3000);
   });
 
-  it('should read all the features on load');
-  it('should require all the step definitions on load');
+  it('should read all the features on load', function() {
+    config.load();
+    assert(config.features.length >= 1);
+  });
+
+  it('should require all the step definitions on load', function() {
+    config.load();
+    assert(config.stepDefinitions.length >= 1);
+  });
 });
