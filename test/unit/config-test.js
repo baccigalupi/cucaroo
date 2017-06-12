@@ -11,9 +11,9 @@ describe('Config', function() {
   let mockStream, outputStream, config;
 
   beforeEach(function() {
-    mockStream = new OutputStream();
-    outputStream = mockStream.stream;
-    config = new Config(outputStream);
+    mockStream    = new OutputStream();
+    outputStream  = mockStream.stream;
+    config        = new Config(outputStream);
   });
 
   it('should create a logger based on the output stream', function() {
