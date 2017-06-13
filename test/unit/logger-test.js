@@ -40,4 +40,22 @@ describe('Logger', function() {
     let expectedText = `\nFeature: ${name}\n${description}\n\n`;
     assert.equal(mockStream.cleanOutput(), expectedText);
   });
+
+  it('prints out scenario names', function() {
+    let name = 'Doing something great!';
+    logger.scenarioName(name);
+    let expectedText = '  Scenario: Doing something great!\n';
+    assert.equal(mockStream.cleanOutput(), expectedText);
+  });
+
+  it('prints a break', function() {
+    logger.addBreak();
+    assert.equal(mockStream.cleanOutput(), '\n');
+  });
+
+  it('prints missing step declaration', function() {
+    logger.stepsDefinitionsMissing();
+    let expected = `\n\nMissing step definitions!!!\nYou can implement step definitions with these snippets:\n\n`;
+    assert.equal(mockStream.cleanOutput(), expected);
+  });
 });
