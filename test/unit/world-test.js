@@ -1,16 +1,13 @@
 'use strict';
 
-const assert        = require('assert');
-const OutputStream  = require('./support/output-stream');
+const assert       = require('assert');
 const World        = require('../../lib/world');
 
 describe('World', function() {
-  let mockStream, outputStream, world;
+  let world;
 
   beforeEach(function() {
-    mockStream    = new OutputStream();
-    outputStream  = mockStream.stream;
-    world         = new World({
+    world = new World({
       hello: 'yup, world!',
       foo: 'bar',
       baz: 'zardoz'
