@@ -1,11 +1,11 @@
-Feature: Signing in as a id or non-id user
-  As a member of the public
-  I want to fill out my online Census survey
-  So that the place that I am living gets maximum funding
+Feature: Signing in
+  As a customer
+  I want to sign in to see subscribed content
+  So that I am informed
 
-  Scenario: Starting the questionnaire prompts for sign in
-    Given I come to the Census survey for the first time
-    When I click to start my questionnaire
-    Then I should be on the login page
-    And I should see a form asking for the id sent on my postcard
-    And I should see a link to sign in without an id
+  Scenario: Seeing the prompt to sign in
+    Given I am a registered user
+    And I am logged out
+    When I visit the application
+    And I click to view protected content
+    Then I should be taken to the login page
