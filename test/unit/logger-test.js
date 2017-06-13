@@ -28,4 +28,16 @@ describe('Logger', function() {
     logger.warn('Oh no!');
     assert(mockStream.output.match(/Oh no!/));
   });
+
+  it('prints out a good feature name and description', function() {
+    let name = 'Signing in';
+    let description = '  As a customer\n' +
+                      '  I want to sign in to see subscribed content\n' +
+                      '  So that I am informed\n';
+    logger.featureName(name);
+    logger.featureDescription(description);
+
+    let expectedText = `\nFeature: ${name}\n${description}\n\n`;
+    assert.equal(mockStream.cleanOutput(), expectedText);
+  });
 });

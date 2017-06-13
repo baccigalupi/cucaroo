@@ -45,6 +45,7 @@ describe('Runner', function() {
     runner = new Runner(config);
     runner.run();
     assert.equal(runner.world.some, 'stuff');
+    assert.equal(runner.world.logger, config.logger);
   });
 
   it('.run() after setup processes definitions with its world', function() {
