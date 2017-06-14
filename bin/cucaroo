@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+'use strict';
+
+const Config = require('../lib/config');
+const Runner = require('../lib/runner');
+
+let config = new Config(process.stdout);
+config.load();
+new Runner(config).run();

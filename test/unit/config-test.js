@@ -65,7 +65,7 @@ describe('Config', function() {
 
   it('should require all the step definitions on load', function() {
     config.load();
-    assert(config.stepDefinitions.length >= 1);
+    assert(config.stepExports.length >= 1);
   });
 
   it('requires the setup and teardown scripts', function() {

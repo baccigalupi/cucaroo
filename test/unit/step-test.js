@@ -48,4 +48,16 @@ describe('Step', function() {
     assert.equal(step.world, world);
     assert.equal(step.timeout, 5000);
   });
+
+  it('valid() is true when there is exactly one step', function() {
+    let step = new Step(compiledStep, stepDefinitions, steps);
+    assert(step.valid());
+  });
+
+  it('valid() is false when there is not exactly one step', function() {
+    let step = new Step(compiledStep, [], steps);
+    assert(!step.valid());
+    step = new Step(compiledStep, [{}, {}], steps);
+    assert(!step.valid());
+  });
 });

@@ -19,7 +19,7 @@ describe('Runner', function() {
 
     config = {
       features: [],
-      stepDefinitions: {},
+      stepExports: {},
       timeout: 3000,
       setup: sinon.spy(),
       teardown: sinon.spy(),
@@ -53,13 +53,13 @@ describe('Runner', function() {
       callback();
     };
 
-    config.stepDefinitions = {
+    config.stepExports = {
       hello: sinon.spy()
     };
 
     runner = new Runner(config);
     runner.run();
-    assert(config.stepDefinitions.hello.calledWith(runner.world));
+    assert(config.stepExports.hello.calledWith(runner.world));
   });
 
   it('.run() after setup compiles the features and runs them', function() {
