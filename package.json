@@ -5,8 +5,7 @@
   "main": "bin/cucaroo",
   "scripts": {
     "test:unit": "mocha test/unit --recursive",
-    "test:acceptance": "bin/cucaroo test/features",
-    "test": "npm run test:unit && npm run test:acceptance"
+    "test": "npm run test:unit"
   },
   "repository": {
     "type": "git",
