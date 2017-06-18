@@ -6,5 +6,5 @@ Feature: Successful feature runs
   Scenario: All is good
     Given all step definitions are defined
     When I run the feature
-    Then I should see all tests in green
+    Then I should see all steps in green
     And the exit code should be 0

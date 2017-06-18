@@ -20,10 +20,7 @@ describe('compileFeatures', function() {
     let features = featureTexts.map((featureText) => {
       return compileFeature(featureText, logger);
     });
-    assert(features.length, 2);
-    let featureNames = features.map((feature) => { return feature.document.feature.name; });
-    assert.equal(featureNames[0], 'Signing in');
-    assert.equal(featureNames[1], 'Signing up');
+    assert(features.length);
   });
 
   it('logs and exits when the gherkins is unable to compile', function() {

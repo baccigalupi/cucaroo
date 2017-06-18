@@ -37,7 +37,7 @@ describe('Features', function() {
     let world = {};
     let features = new Features(compiledFeatures, world);
     features.run(function() {
-      assert.equal(runCount, 2);
+      assert.equal(runCount, compiledFeatures.length);
       done();
     });
   });

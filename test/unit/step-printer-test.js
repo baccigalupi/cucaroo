@@ -47,7 +47,6 @@ describe('StepPrinter', function() {
     assert(mockStream.output.includes('// 2 definitions exist for this step.'));
     assert(mockStream.output.includes(chalk.styles.cyan.open)); // Given
     assert(mockStream.output.includes(chalk.styles.red.open)); // match text
-    assert(mockStream.output.includes(chalk.styles.gray.open)); // comment
   });
 
   it('print() correct colors and messages no definitions', function() {
@@ -58,7 +57,6 @@ describe('StepPrinter', function() {
     assert(mockStream.output.includes('// no definition found for this step.'));
     assert(mockStream.output.includes(chalk.styles.cyan.open)); // Given
     assert(mockStream.output.includes(chalk.styles.red.open)); // match text
-    assert(mockStream.output.includes(chalk.styles.yellow.open)); // comment
   });
 
   it('print() correct colors and messages when step is pending', function() {
@@ -88,7 +86,7 @@ describe('StepPrinter', function() {
   world.given('I am a registered user', function(done) {
     done(world.pending());
   });
-});
+};
 `
     assert.equal(mockStream.cleanOutput(), expected);
   });

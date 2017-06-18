@@ -11,7 +11,7 @@ module.exports = function(world) {
     done();
   });
 
-  world.then('I should see all tests in green', function(done) {
+  world.then('I should see all steps in green', function(done) {
     done();
   });
 
