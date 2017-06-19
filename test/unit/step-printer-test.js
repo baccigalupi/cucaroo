@@ -81,8 +81,8 @@ describe('StepPrinter', function() {
   });
 
   it('suggestedDefinition() prints a module body suggestion', function() {
-    stepPrinter.suggestedDefinition();
-    let expected = `  world.given('I am a registered user', function(done) {\n    done(world.pending());\n  });\n`
-    assert.equal(mockStream.cleanOutput(), expected);
+    let definition = stepPrinter.suggestedDefinition();
+    let expected = `  world.given('I am a registered user', function(done) {\n    done(world.pending());\n  });`
+    assert.equal(definition, expected);
   });
 });
