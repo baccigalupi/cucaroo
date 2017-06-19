@@ -23,7 +23,7 @@ describe('Features', function() {
   beforeEach(function() {
     this.sinon = sinon.sandbox.create();
     runCount = 0;
-    Features.Feature = Feature;
+    Features.ItemClass = Feature;
     compiledFeatures = loadFeatures(__dirname + '/../features').map((featureText) => {
       return compile(featureText, console);
     });

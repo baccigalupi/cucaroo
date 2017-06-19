@@ -23,7 +23,7 @@ describe('Scenarios', function() {
   beforeEach(function() {
     this.sinon = sinon.sandbox.create();
     runCount = 0;
-    Scenarios.Scenario = Scenario;
+    Scenarios.ItemClass = Scenario;
   });
 
   afterEach(function() {
