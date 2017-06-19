@@ -32,9 +32,4 @@ describe('World', function() {
 
     assert.equal(world.stepDefinitions.steps.length, 4);
   });
-
-  it('adds errors', function() {
-    world.addError();
-    assert.equal(world.errors, 1);
-  });
 });

@@ -82,12 +82,7 @@ describe('StepPrinter', function() {
 
   it('suggestedDefinition() prints a module body suggestion', function() {
     stepPrinter.suggestedDefinition();
-    let expected = `module.exports = function(world) {
-  world.given('I am a registered user', function(done) {
-    done(world.pending());
-  });
-};
-`
+    let expected = `  world.given('I am a registered user', function(done) {\n    done(world.pending());\n  });\n`
     assert.equal(mockStream.cleanOutput(), expected);
   });
 });
