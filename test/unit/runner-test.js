@@ -8,14 +8,14 @@ const Logger = require('../../lib/runner');
 const OutputStream  = require('./support/output-stream');
 
 describe('Runner', function() {
-  let config, runner;
+  let config, runner, logger;
   let mockStream, outputStream;
 
   beforeEach(function() {
     this.sinon = sinon.sandbox.create();
     mockStream = new OutputStream();
     outputStream = mockStream.stream;
-    let logger = new Logger(outputStream);
+    logger = new Logger(outputStream);
 
     config = {
       features: [],
@@ -32,7 +32,7 @@ describe('Runner', function() {
   });
 
   it('.run() calls setup in config', function() {
-    runner = new Runner(config);
+    runner = new Runner(config, logger);
     runner.run();
     assert(config.setup.called);
   });
@@ -42,7 +42,7 @@ describe('Runner', function() {
       callback({some: 'stuff'});
     };
 
-    runner = new Runner(config);
+    runner = new Runner(config, logger);
     runner.run();
     assert.equal(runner.world.some, 'stuff');
     assert.equal(runner.world.logger, config.logger);
@@ -57,7 +57,7 @@ describe('Runner', function() {
       hello: sinon.spy()
     };
 
-    runner = new Runner(config);
+    runner = new Runner(config, logger);
     runner.run();
     assert(config.stepExports.hello.calledWith(runner.world));
   });
@@ -75,7 +75,7 @@ describe('Runner', function() {
         callback();
       }
     }
-    runner = new Runner(config);
+    runner = new Runner(config, logger);
     runner.run();
     assert(Runner.compile.calledWith('feature'));
     assert(config.teardown.called);

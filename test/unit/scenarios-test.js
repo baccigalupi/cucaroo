@@ -7,7 +7,7 @@ const Scenarios    = require('../../lib/scenarios');
 const loadFeatures = require('../../lib/load-features');
 const compile      = require('../../lib/compile-feature');
 
-describe('Features', function() {
+describe('Scenarios', function() {
   let runCount;
   let Scenario = function(texts, world) {
     this.compiled = texts;
