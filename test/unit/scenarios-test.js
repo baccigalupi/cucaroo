@@ -31,10 +31,11 @@ describe('Scenarios', function() {
   });
 
   it('calls run on each feature and then finished with the callback', function(done) {
-    let world = {};
+    let world = {status: {pass: sinon.spy()}};
     let scenarios = new Scenarios(['one', 'two'], world);
     scenarios.run(function() {
       assert.equal(runCount, 2);
+      assert(world.status.pass.calledWith('scenario'));
       done();
     });
   });

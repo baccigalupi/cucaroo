@@ -34,10 +34,11 @@ describe('Features', function() {
   });
 
   it('calls run on each feature and then finished with the callback', function(done) {
-    let world = {};
+    let world = {status: {pass: sinon.spy()}};
     let features = new Features(compiledFeatures, world);
     features.run(function() {
       assert.equal(runCount, compiledFeatures.length);
+      assert(world.status.pass.calledWith('feature'));
       done();
     });
   });
