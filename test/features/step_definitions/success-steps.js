@@ -19,4 +19,15 @@ module.exports = function(world) {
     assert.equal(world.errors, 0);
     done();
   });
+
+  world.given('I wrap a number of substeps into one', function(done) {
+    world
+      .runStep('all step definitions are defined')
+      .runStep('I run the feature')
+      .finish(done);
+  });
+
+  world.then('I should see everything is green', function(done) {
+    world.run('I should see all steps in green', done);
+  });
 };
