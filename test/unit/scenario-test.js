@@ -10,12 +10,12 @@ const Logger        = require('../../lib/logger');
 describe('Feature', function() {
   let scenarioText, scenario, mockStream, outputStream, logger, callCount;
 
-  let Steps = function() {
+  let StepCollection = function() {
     this.run = function(callback) {
       callCount += 1;
       callback();
-    }
-  }
+    };
+  };
 
   beforeEach(function() {
     this.sinon = sinon.sandbox.create();
@@ -27,7 +27,7 @@ describe('Feature', function() {
     scenarioText = {
       name: 'Doing great things',
     };
-    Scenario.Steps = Steps;
+    Scenario.StepCollection = StepCollection;
 
     scenario = new Scenario(scenarioText, {logger: logger});
   });
@@ -50,4 +50,3 @@ describe('Feature', function() {
     });
   });
 });
-

@@ -10,12 +10,12 @@ const Logger        = require('../../lib/logger');
 describe('Feature', function() {
   let featureText, feature, mockStream, outputStream, logger, callCount;
 
-  let Scenarios = function() {
+  let ScenarioCollection = function() {
     this.run = function(callback) {
       callCount += 1;
       callback();
-    }
-  }
+    };
+  };
 
   beforeEach(function() {
     this.sinon = sinon.sandbox.create();
@@ -34,7 +34,7 @@ describe('Feature', function() {
         }
       }
     };
-    Feature.Scenarios = Scenarios;
+    Feature.ScenarioCollection = ScenarioCollection;
 
     feature = new Feature(featureText, {logger: logger});
   });
@@ -49,7 +49,7 @@ describe('Feature', function() {
     assert.equal(mockStream.cleanOutput(), expectedText);
   });
 
-  it('.run() calls run on a new Scenarios instance', function(done) {
+  it('.run() calls run on a new ScenarioCollection instance', function(done) {
     feature.run(function() {
       assert.equal(callCount, 1);
       done();
@@ -63,4 +63,3 @@ describe('Feature', function() {
     });
   });
 });
-
