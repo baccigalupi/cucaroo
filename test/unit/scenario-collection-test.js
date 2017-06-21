@@ -3,30 +3,27 @@
 const assert       = require('assert');
 const sinon        = require('sinon');
 
-const Features     = require('../../lib/features');
+const Scenarios    = require('../../lib/scenario-collection');
 const loadFeatures = require('../../lib/load-features');
 const compile      = require('../../lib/compile-feature');
 
-describe('Features', function() {
+describe('Scenarios', function() {
   let runCount;
-  let Feature = function(featureText, world) {
-    this.compiled = featureText;
+  let Scenario = function(texts, world) {
+    this.compiled = texts;
     this.world = world;
     this.run = (done) => {
       runCount += 1;
       done();
-    }
-  }
+    };
+  };
 
   let compiledFeatures;
 
   beforeEach(function() {
     this.sinon = sinon.sandbox.create();
     runCount = 0;
-    Features.ItemClass = Feature;
-    compiledFeatures = loadFeatures(__dirname + '/../features').map((featureText) => {
-      return compile(featureText, console);
-    });
+    Scenarios.ItemClass = Scenario;
   });
 
   afterEach(function() {
@@ -35,10 +32,10 @@ describe('Features', function() {
 
   it('calls run on each feature and then finished with the callback', function(done) {
     let world = {status: {pass: sinon.spy()}};
-    let features = new Features(compiledFeatures, world);
-    features.run(function() {
-      assert.equal(runCount, compiledFeatures.length);
-      assert(world.status.pass.calledWith('feature'));
+    let scenarios = new Scenarios(['one', 'two'], world);
+    scenarios.run(function() {
+      assert.equal(runCount, 2);
+      assert(world.status.pass.calledWith('scenario'));
       done();
     });
   });

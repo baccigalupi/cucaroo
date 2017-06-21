@@ -30,6 +30,6 @@ describe('World', function() {
     world.then(function  thenStep(done) { done(); });
     world.and(function   andStep(done) { done(); });
 
-    assert.equal(world.stepDefinitions.steps.length, 4);
+    assert.equal(world.stepDefinitionCollection.steps.length, 4);
   });
 });
