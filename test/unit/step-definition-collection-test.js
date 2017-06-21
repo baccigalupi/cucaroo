@@ -1,9 +1,9 @@
 'use strict';
 
 const assert = require('assert');
-const StepDefinitions = require('../../lib/step-definitions');
+const StepDefinitionCollection = require('../../lib/step-definition-collection');
 
-describe('StepDefinitions', function() {
+describe('StepDefinitionCollection', function() {
   let definitions, callcount, implementation;
 
   beforeEach(function() {
@@ -12,7 +12,7 @@ describe('StepDefinitions', function() {
       callcount += 1;
       done();
     };
-    definitions = new StepDefinitions();
+    definitions = new StepDefinitionCollection();
   });
 
   it('allows adding step definitions via special names', function() {
