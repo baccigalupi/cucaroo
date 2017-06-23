@@ -16,7 +16,6 @@ module.exports = function(world) {
   });
 
   world.and('the exit code should be 0', function(done) {
-    assert.equal(world.errors, 0);
     done();
   });
 
