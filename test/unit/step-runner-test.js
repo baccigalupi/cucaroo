@@ -5,7 +5,7 @@ const sinon  = require('sinon');
 const StepRunner = require('../../lib/step-runner');
 const StepValue  = require('../../lib/step-value');
 
-describe('StepValue', function() {
+describe('StepRunner', function() {
   let stepValue, runner, parent,
     compiledStep, matchingDefinitions, called;
 
