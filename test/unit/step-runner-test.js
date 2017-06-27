@@ -26,15 +26,12 @@ describe('StepRunner', function() {
   });
 
   it('emits a pass event when successful with the step', function(done) {
-    let eventType, step, error;
-    stepValue.onAny(function(event, obj, passedErr) {
-      eventType = event;
+    let step;
+    stepValue.on('pass', function(obj) {
       step = obj;
-      error = passedErr;
     });
 
     runner.run(function() {
-      assert.equal(eventType, 'pass');
       assert.equal(step, stepValue);
       done();
     });
@@ -44,16 +41,13 @@ describe('StepRunner', function() {
     parent = { halted: function() { return true; } };
     runner.parent = parent;
 
-    let eventType, step, error;
-    stepValue.onAny(function(event, obj, passedErr) {
-      eventType = event;
-      step = obj;
-      error = passedErr;
+    let called;
+    stepValue.on('not-run', function(obj) {
+      called = true;
     });
 
     runner.run(function() {
-      assert.equal(eventType, 'not-run');
-      assert.equal(step, stepValue);
+      assert(called);
       done();
     });
   });
@@ -63,15 +57,12 @@ describe('StepRunner', function() {
       throw new Error('pending');
     };
 
-    let eventType, step, error;
-    stepValue.onAny(function(event, obj, passedErr) {
-      eventType = event;
+    let step;
+    stepValue.on('pending', function(obj) {
       step = obj;
-      error = passedErr;
     });
 
     runner.run(function() {
-      assert.equal(eventType, 'pending');
       assert.equal(step, stepValue);
       done();
     });
@@ -83,15 +74,13 @@ describe('StepRunner', function() {
       throw err;
     };
 
-    let eventType, step, error;
-    stepValue.onAny(function(event, obj, passedErr) {
-      eventType = event;
+    let step, error;
+    stepValue.on('fail', function(obj, passedErr) {
       step = obj;
       error = passedErr;
     });
 
     runner.run(function() {
-      assert.equal(eventType, 'fail');
       assert.equal(step, stepValue);
       assert.equal(error, err);
       done();
@@ -103,17 +92,29 @@ describe('StepRunner', function() {
       setTimeout(callback, 300);
     };
 
-    let eventType, step, error;
-    stepValue.onAny(function(event, obj, passedErr) {
-      eventType = event;
+    let step, error;
+    stepValue.on('fail', function(obj, passedErr) {
       step = obj;
       error = passedErr;
     });
 
     runner.run(function() {
-      assert.equal(eventType, 'fail');
-      assert.equal(step, stepValue);
+      assert.equal(step.text, stepValue.text);
       assert(error.message.match(/Step timed out/i));
+      done();
+    });
+  });
+
+  it('wraps the run in a "started" and "finished" event', function(done) {
+    let events = [];
+    stepValue.onAny(function(event) {
+      events.push(event);
+    });
+
+    runner.run(function() {
+      assert.equal(events[0], 'started');
+      assert.equal(events[1], 'pass');
+      assert.equal(events[2], 'finished');
       done();
     });
   });
