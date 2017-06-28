@@ -3,8 +3,8 @@
 const assert = require('assert');
 const sinon  = require('sinon');
 
-const Runner = require('../../lib/runner');
-const Logger = require('../../lib/runner');
+const Runner = require('../../lib/suite-runner');
+const Logger = require('../../lib/logger');
 const OutputStream  = require('./support/output-stream');
 
 describe('Runner', function() {
