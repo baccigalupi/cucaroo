@@ -8,7 +8,7 @@ describe('SubStep', function() {
   let subStep, world;
 
   beforeEach(function() {
-    world = new World({}, {});
+    world   = new World({}, {});
     subStep = new SubStepRunner(world);
   });
 
