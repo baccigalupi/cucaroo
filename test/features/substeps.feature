@@ -12,3 +12,15 @@ Feature: Successful feature runs
     When I run that scenario
     Then I will see that the step containing the substep will be unimplemented
     And the scenario will fail
+
+  Scenario: Some substeps are pending
+    Given I wrap a pending substep into another step set
+    When I run that scenario
+    Then I will see that the step containing the substep will be pending
+    And the scenario will fail
+
+  Scenario: Some substeps are failing
+    Given I wrap a error prone substep into another step set
+    When I run that scenario
+    Then I will see that the step containing the substep will have failed
+    And the scenario will fail

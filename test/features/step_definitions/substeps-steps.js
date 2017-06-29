@@ -32,4 +32,26 @@ module.exports = function(world) {
   world.then('the scenario will fail', function(done) {
     done();
   });
+
+  world.given('I wrap a pending substep into another step set', function(done) {
+    world
+      .runStep('all step definitions are defined')
+      .runStep('I throw in a pending step')
+      .finish(done);
+  });
+
+  world.given('I wrap a error prone substep into another step set', function(done) {
+    world
+      .runStep('all step definitions are defined')
+      .runStep('I make an error resulting in a runtime failure')
+      .finish(done);
+  });
+
+  world.then('I will see that the step containing the substep will be pending', function(done) {
+    done();
+  });
+
+  world.then('I will see that the step containing the substep will have failed', function(done) {
+    done();
+  });
 };
