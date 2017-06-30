@@ -54,4 +54,11 @@ module.exports = function(world) {
   world.then('I will see that the step containing the substep will have failed', function(done) {
     done();
   });
+
+  world.given('I wrap an ambiguous substep into another step set', function(done) {
+    world
+      .runStep('all step definitions are defined')
+      .runStep('there are two steps with the same text')
+      .finish(done);
+  });
 };

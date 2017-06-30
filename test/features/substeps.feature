@@ -13,6 +13,12 @@ Feature: Successful feature runs
     Then I will see that the step containing the substep will be unimplemented
     And the scenario will fail
 
+  Scenario: Some substeps not ambiguous
+    Given I wrap an ambiguous substep into another step set
+    When I run that scenario
+    Then I will see that the step containing the substep will be unimplemented
+    And the scenario will fail
+
   Scenario: Some substeps are pending
     Given I wrap a pending substep into another step set
     When I run that scenario
