@@ -1,8 +1,11 @@
 {
   "name": "cucaroo",
-  "version": "0.2.0",
+  "version": "0.3.1",
   "description": "Light cucumber implementation for node javascript",
   "main": "bin/cucaroo",
+  "bin": {
+    "cucaroo": "./bin/cucaroo"
+  },
   "scripts": {
     "test:unit": "mocha test/unit --recursive",
     "test": "npm run test:unit"
