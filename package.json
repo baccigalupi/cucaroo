@@ -1,6 +1,6 @@
 {
   "name": "cucaroo",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Light cucumber implementation for node javascript",
   "main": "bin/cucaroo",
   "bin": {
