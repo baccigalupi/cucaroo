@@ -7,7 +7,7 @@ const Runner = require('../../lib/suite-runner');
 const Logger = require('../../lib/logger');
 const OutputStream  = require('./support/output-stream');
 
-describe('Runner', function() {
+describe('SuiteRunner', function() {
   let config, runner, logger;
   let mockStream, outputStream;
 
@@ -62,7 +62,8 @@ describe('Runner', function() {
     assert(config.stepExports.hello.calledWith(runner.world));
   });
 
-  it('.run() after setup compiles the features and runs them', function() {
+  // TODO: switch to testing output of running features
+  xit('.run() after setup compiles the features and runs them', function() {
     config.setup = function(callback) {
       callback();
     };

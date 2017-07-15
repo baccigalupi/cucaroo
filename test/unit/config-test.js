@@ -53,7 +53,7 @@ describe('Config', function() {
 
   it('should have a default timeout that is overridden by the file', function() {
     config.load();
-    assert.equal(config.timeout, 5000);
+    assert.equal(config.timeout, 200);
     config.load('not-here.yo');
     assert.equal(config.timeout, 3000);
   });

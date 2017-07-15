@@ -4,7 +4,7 @@ const assert  = require('assert');
 const World   = require('../../lib/world');
 const SubStepRunner = require('../../lib/sub-step-runner');
 
-describe('SubStep', function() {
+describe('SubStepRunner', function() {
   let subStep, world;
 
   beforeEach(function() {
@@ -21,10 +21,10 @@ describe('SubStep', function() {
     assert.equal(subStep.add('whatever'), subStep);
   });
 
-  it('finish(done) marries and runs the substeps capturing "not-done" when step not found', function(done) {
+  it('finish(done) marries and runs the substeps capturing "not-run" when step not found', function(done) {
     subStep.add('more o that!');
 
-    subStep.on('not-run', function(step) {
+    subStep.on('substep-not-run', function(step) {
       assert(step.notFound());
       done();
     });
