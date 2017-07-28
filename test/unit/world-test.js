@@ -20,10 +20,6 @@ describe('World', function() {
     assert.equal(world.baz, 'zardoz');
   });
 
-  it('starts with no errors', function() {
-    assert.equal(world.errors, 0);
-  });
-
   it('adds steps definitions via methods', function() {
     world.given(function givenStep(done) { done(); });
     world.when(function  whenStep(done) { done(); });

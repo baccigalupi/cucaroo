@@ -3,7 +3,7 @@
 'use strict';
 
 const Config = require('../lib/config');
-const Runner = require('../lib/runner');
+const Runner = require('../lib/suite-runner');
 
 let config = new Config(process.stdout);
 config.load();
