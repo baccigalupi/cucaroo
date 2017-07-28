@@ -1,6 +1,8 @@
 cucaroo 🥒
 =======
 
+[![Build Status](https://travis-ci.org/baccigalupi/cucaroo.svg?branch=master)](https://travis-ci.org/baccigalupi/cucaroo)
+
 A light cucumber implementation for node javascript. Cucaroo allows you to have product defined `.features` and facilitates the testing against the narrative of the feature.
 
 ## Usage
