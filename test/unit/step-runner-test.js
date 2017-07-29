@@ -92,17 +92,13 @@ describe('StepRunner', function() {
       setTimeout(callback, 300);
     };
 
-    let step, error;
-    stepValue.on('fail', function(obj, passedErr) {
-      step = obj;
-      error = passedErr;
-    });
-
-    runner.run(function() {
+    stepValue.on('fail', function(step, error) {
       assert.equal(step.text, stepValue.text);
       assert(error.message.match(/Step timed out/i));
       done();
     });
+
+    runner.run(function() {});
   });
 
   it('wraps the run in a "started" and "finished" event', function(done) {
