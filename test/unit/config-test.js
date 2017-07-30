@@ -13,7 +13,7 @@ describe('Config', function() {
   beforeEach(function() {
     mockStream    = new OutputStream();
     outputStream  = mockStream.stream;
-    config        = new Config(outputStream);
+    config        = new Config(outputStream, []);
   });
 
   it('should create a logger based on the output stream', function() {
@@ -60,12 +60,12 @@ describe('Config', function() {
 
   it('should read all the features on load', function() {
     config.load();
-    assert(config.features.length >= 1);
+    assert(config.features.length >= 5);
   });
 
   it('should require all the step definitions on load', function() {
     config.load();
-    assert(config.stepExports.length >= 1);
+    assert(config.stepExports.length >= 5);
   });
 
   it('requires the setup and teardown scripts', function() {
@@ -74,5 +74,13 @@ describe('Config', function() {
     let teardown = require('../features/support/teardown');
     assert.equal(config.setup, setup);
     assert.equal(config.teardown, teardown);
+  });
+
+  describe('when passed filters', function() {
+    it('when one relative file path is passed, it reduces features to that file', function() {
+      config = new Config(outputStream, ['test/features/success.feature']);
+      config.load();
+      assert.equal(config.features.length, 1);
+    });
   });
 });
