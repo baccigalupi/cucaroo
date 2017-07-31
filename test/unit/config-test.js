@@ -42,7 +42,7 @@ describe('Config', function() {
 
   it('logs a warning if the config file is not found', function() {
     config.load('not-here.yo');
-    let expectedMessage = '`cucaroo.config.js` config file not found.';
+    let expectedMessage = '`.cucaroo.config.js` config file not found.';
     assert(mockStream.cleanOutput().includes(expectedMessage));
   });
 
