@@ -16,7 +16,7 @@ describe('pending.feature', function() {
     config.load();
   });
 
-  it('runs successfully', function(done) {
+  it('returns an error code', function(done) {
     Runner.prototype.close = function() {
       assert.equal(this.observer.exitCode(), 1);
       done();
