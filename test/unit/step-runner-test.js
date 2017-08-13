@@ -116,12 +116,14 @@ describe('StepRunner', function() {
   });
 
   describe('#emit(err)', function() {
-    let events;
+    let events, errs;
 
     beforeEach(function() {
       events = [];
-      stepValue.onAny(function(event) {
+      errs = [];
+      stepValue.onAny(function(event, _step, err) {
         events.push(event);
+        errs.push(err);
       });
     });
 
@@ -140,9 +142,10 @@ describe('StepRunner', function() {
       assert.equal(events[0], 'fail');
     });
 
-    it('when it receives a non-error value, it emits a a \'fail\' on the step', function() {
+    it('when it receives a non-error value, it emits a \'fail\' on the step, and passes along an error about the funky', function() {
       runner.emit('some random string');
       assert.equal(events[0], 'fail');
+      assert.equal(errs[0].message, 'Step callback received unexpected, non-error value: some random string');
     });
   });
 });
