@@ -5,6 +5,7 @@
 const Config = require('../lib/config');
 const Runner = require('../lib/suite-runner');
 
-let config = new Config(process.stdout);
+let filters = process.argv.slice(2);
+let config = new Config(process.stdout, filters);
 config.load();
 new Runner(config).run();

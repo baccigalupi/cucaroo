@@ -1,4 +1,4 @@
-Feature: Successful feature runs
+Feature: Feature with ambiguous steps
   As a BDD developer
   I want to be informed about ambigous step definitions
   So that I can keep my test code clean and not run the wrong step
