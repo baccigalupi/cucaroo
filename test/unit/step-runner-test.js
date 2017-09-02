@@ -114,4 +114,38 @@ describe('StepRunner', function() {
       done();
     });
   });
+
+  describe('#emit(err)', function() {
+    let events, errs;
+
+    beforeEach(function() {
+      events = [];
+      errs = [];
+      stepValue.onAny(function(event, _step, err) {
+        events.push(event);
+        errs.push(err);
+      });
+    });
+
+    it('when there is no error, it emits a \'pass\' on the step', function() {
+      runner.emit();
+      assert.equal(events[0], 'pass');
+    });
+
+    it('when there is a pending error, it emits a \'pending\' on the step', function() {
+      runner.emit(new Error('Pending'));
+      assert.equal(events[0], 'pending');
+    });
+
+    it('when there is a different error, it emits a \'fail\' on the step', function() {
+      runner.emit(new Error('Oh crap!'));
+      assert.equal(events[0], 'fail');
+    });
+
+    it('when it receives a non-error value, it emits a \'fail\' on the step, and passes along an error about the funky', function() {
+      runner.emit('some random string');
+      assert.equal(events[0], 'fail');
+      assert.equal(errs[0].message, 'Step callback received unexpected, non-error value: some random string');
+    });
+  });
 });
